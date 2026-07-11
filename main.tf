@@ -1,9 +1,38 @@
-resource "aws_instance" "test1" {
-    instance_type = "t2.micro"
-    ami = "ami-01edba92f9036f76e"
-    vpc_security_group_ids = ["sg-0708e7bc7b4f99963"]
+resource "aws_instance" "test1-EC2" {
+    instance_type = var.instance_type
+    ami = var.ami
+    vpc_security_group_ids = [aws_security_group.test1-SG1.id]
     tags = {
-        name = "test-terraform"
+        Name = "test1-terraform"
         env = "dev"
+    }
+}
+
+resource "aws_instance" "test2-EC2" {
+    instance_type = var.instance_type
+    ami = var.ami
+    vpc_security_group_ids = [aws_security_group.test1-SG1.id]
+    tags = {
+        Name = "test2-terraform"
+        env = "test"
+    }
+}
+resource "aws_security_group" "test1-SG1"{
+    name = "SG1-terraform"
+    ingress{
+        from_port = 0
+        to_port = 0
+        protocol = -1
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress{
+        from_port = 0
+        to_port = 0
+        protocol = -1
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    tags = {
+        Name = "SG1-terraform"
     }
 }
