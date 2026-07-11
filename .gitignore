@@ -1,0 +1,34 @@
+# macOS local metadata
+.DS_Store
+
+# Terraform plugin/module cache
+.terraform/
+
+# Terraform state files can contain sensitive values
+*.tfstate
+*.tfstate.*
+
+# Terraform plan files are local execution artifacts
+*.tfplan
+*.tfplan.*
+
+# Variable value files may contain secrets or environment-specific values
+*.tfvars
+*.tfvars.json
+
+# Terraform crash logs
+crash.log
+crash.*.log
+
+# Local override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform state lock info
+.terraform.tfstate.lock.info
+
+# Local CLI configuration
+.terraformrc
+terraform.rc
