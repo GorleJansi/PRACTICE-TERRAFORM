@@ -1,11 +1,8 @@
 locals {
 
   tags = {
-        Name = "${var.project}-${var.env}"
-        project = "multienv"
-        terraform = "true"
-        env = var.env
-
-    }  
+    project   = "${var.project}-${var.env}-workspace"
+    terraform = "true"
+    env       = var.env
+  }
 }
-
