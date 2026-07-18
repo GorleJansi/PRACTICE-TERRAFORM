@@ -1,0 +1,20 @@
+resource "aws_security_group" "alb-sg" {
+    vpc_id = aws_vpc.mainvpc.id
+    ingress{
+        from_port = "80"
+        to_port = "80"
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+
+    }
+}
+
+resource "aws_securirty_group" "backend_sg"{
+    vpc_id = aws_vpc.mainvpc.id
+    ingress{
+        from_port = "8080"
+        to_port = "8080"
+        protocol = "tcp"
+        securirty_groups = [aws_security_group.alb-sg]
+    }
+}
